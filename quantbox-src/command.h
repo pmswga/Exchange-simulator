@@ -4,26 +4,26 @@
 #include "order.h"
 #include "trade.h"
 #include "ctype.h"
+#include <string.h>
 
-//79 - Char of 'O'
-//67 - Char of 'C'
 enum command_type {
-    OPEN     = 79, ///< Char of 'O'
-    CLOSE    = 67, ///< Char of 'C'
+    OPEN     = 1,
+    CLOSE    = 2,
     TRANSFER = 3,
     X        = 4
 };
 
-union command {
+struct command {
     enum command_type type;
-    struct order order;
-    struct trade trade;
+    struct order *order;
 };
 
-int is_correct_command(char *command_string);
-union command* get_command(const char *command_string);
+int is_correct_open_command(const char *command_string);
+int is_correct_close_command(const char *command_string);
 
-void print_command(const union command *c);
+struct command* get_command_from_string(char *command_string);
+
+void print_command(const struct command *c);
 
 
 #endif // COMMAND_H

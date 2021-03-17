@@ -14,6 +14,9 @@ struct order {
   float price;
 };
 
+
+struct order* get_order_from_string(char *order_string);
+
 void print_order(const struct order *er);
 
 
