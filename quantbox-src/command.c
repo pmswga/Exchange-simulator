@@ -213,3 +213,8 @@ struct command* get_command_from_string(char *command_string)
     free(c);
     return 0;
 }
+
+void print_command(struct command *c)
+{
+    printf("%d", c->type);
+}

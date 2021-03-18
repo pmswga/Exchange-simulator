@@ -23,7 +23,7 @@ int is_correct_close_command(const char *command_string);
 
 struct command* get_command_from_string(char *command_string);
 
-void print_command(const struct command *c);
+void print_command(struct command *c);
 
 
 #endif // COMMAND_H

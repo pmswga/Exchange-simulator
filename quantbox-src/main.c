@@ -19,12 +19,11 @@ int main(int argc, char **argv)
         FILE *fp = fopen(argv[1], "r");
         char *s = (char*) malloc(sizeof (char) * 255);
         
-        if (fp == NULL) {
+        if (!fp) {
             exit(1);
         }
         
-        while (!feof(fp))
-        {
+        while (!feof(fp)) {
             fgets(s, 255, fp);
             
             if (is_correct_open_command(s) == 1) {
