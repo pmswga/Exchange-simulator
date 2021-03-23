@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(quantbox-src LANGUAGES C)
+project(Exchange LANGUAGES C)
 
-add_executable(quantbox-src main.c types.h order.h order.c trade.h trade.c command.h command.c exchange.h exchange.c tests/test.c)
+add_executable(Exchange main.c
+    order.h
+    order_list.h
+    executer.h
+    )

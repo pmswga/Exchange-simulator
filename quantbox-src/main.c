@@ -1,21 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-#include "exchange.h"
-#include "order.h"
-#include "trade.h"
-#include "command.h"
-#include "types.h"
+#include <time.h>
+#include "order_list.h"
 
 
 int main(int argc, char **argv)
 {
-    struct exchange e = {0, NULL};
+    struct order_list *lst = malloc(sizeof (struct order_list));
+    lst->head = NULL;
+    lst->size = 0;
     
-    if (argc == 2) {
-        
-    } else if (argc == 3) {
+    if (argc == 3) {
         FILE *fp = fopen(argv[1], "r");
         char *s = (char*) malloc(sizeof (char) * 255);
         
@@ -26,10 +21,10 @@ int main(int argc, char **argv)
         while (!feof(fp)) {
             fgets(s, 255, fp);
             
-            if (is_correct_open_command(s) == 1) {
-                add_command(&e, get_command_from_string(s));
-            } else if (is_correct_close_command(s) == 1) {
-                add_command(&e, get_command_from_string(s));
+            if (is_correct_open_order(s) == 1) {
+                add_order(lst, get_open_order_from_string(s));
+            } else if (is_correct_close_order(s) == 1) {
+                add_order(lst, get_close_order_from_string(s));
             }
             
         }
@@ -38,9 +33,19 @@ int main(int argc, char **argv)
         fclose(fp);
     }
     
-    destroy_exchange(&e);
+    
+    
+    print_list(lst);
+    
+    
+    // Execute orders
+    
+    
+    
+    
+    
+    
+    destory_list(lst);
     
     return 0;
 }
-
-
